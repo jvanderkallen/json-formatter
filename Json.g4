@@ -14,7 +14,17 @@ element: expression DELIMITER;
 lastElement: expression;
 primitive: NUMBER | STRING | BOOLEAN | NULL;
 
-NUMBER: '-'? [0-9]+ (('.' | 'e' | 'E') [0-9]+)?;
+NUMBER: MINUS? INT FRAC? EXP?;
+
+fragment INT: '0' | NON_ZERO_DIGIT DIGIT*;
+fragment DIGIT: [0-9];
+fragment NON_ZERO_DIGIT: [1-9];
+fragment E: 'e' | 'E';
+fragment FRAC: '.' DIGIT+;
+fragment MINUS: '-';
+fragment PLUS: '+';
+fragment EXP: E (MINUS | PLUS)? DIGIT+;
+
 STRING: '"' (~('"' | '\n' | '\r') | '\\"')* '"';
 BOOLEAN: 'true' | 'false';
 DELIMITER: ',';
