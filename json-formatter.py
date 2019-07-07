@@ -64,10 +64,6 @@ class JsonFormatterListener(JsonListener):
             for i in range(self.SPACES_PER_LEVEL):
                 sys.stdout.write(' ')
 
-    def print_member_key(self, key):
-        self.print_indentation()
-        sys.stdout.write(key + ': ')                
-
     def enterObj(self, ctx:JsonParser.ObjContext):
         if self.current_context.is_array():
             self.print_indentation()
@@ -79,6 +75,7 @@ class JsonFormatterListener(JsonListener):
 
     def exitObj(self, ctx:JsonParser.ObjContext):
         self.current_context.decrement_indentation_level()
+        print()
         self.print_indentation()
         sys.stdout.write('}')
         self.current_context.exit_context()
@@ -90,27 +87,17 @@ class JsonFormatterListener(JsonListener):
 
     def exitArray(self, ctx:JsonParser.ArrayContext):
         self.current_context.decrement_indentation_level()
+        print()
         self.print_indentation()
         sys.stdout.write(']')
         self.current_context.exit_context()        
 
     def enterMember(self, ctx:JsonParser.MemberContext):
-        self.print_member_key(ctx.key().getText())
+        self.print_indentation()
+        sys.stdout.write(ctx.key().getText() + ': ')
 
-    def enterLastMember(self, ctx:JsonParser.LastMemberContext):
-        self.print_member_key(ctx.key().getText())
-
-    def exitMember(self, ctx:JsonParser.MemberContext):
+    def enterDelimiter(self, ctx:JsonParser.DelimiterContext):
         print(',')
-
-    def exitLastMember(self, ctx:JsonParser.LastMemberContext):
-        print('')
-
-    def exitElement(self, ctx:JsonParser.ElementContext):
-        print(',')
-
-    def exitLastElement(self, ctx:JsonParser.LastElementContext):
-        print('')
 
     def enterPrimitive(self, ctx:JsonParser.PrimitiveContext):
         if self.current_context.is_array():

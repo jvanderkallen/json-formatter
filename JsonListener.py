@@ -44,15 +44,6 @@ class JsonListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by JsonParser#lastMember.
-    def enterLastMember(self, ctx:JsonParser.LastMemberContext):
-        pass
-
-    # Exit a parse tree produced by JsonParser#lastMember.
-    def exitLastMember(self, ctx:JsonParser.LastMemberContext):
-        pass
-
-
     # Enter a parse tree produced by JsonParser#key.
     def enterKey(self, ctx:JsonParser.KeyContext):
         pass
@@ -89,21 +80,21 @@ class JsonListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by JsonParser#lastElement.
-    def enterLastElement(self, ctx:JsonParser.LastElementContext):
-        pass
-
-    # Exit a parse tree produced by JsonParser#lastElement.
-    def exitLastElement(self, ctx:JsonParser.LastElementContext):
-        pass
-
-
     # Enter a parse tree produced by JsonParser#primitive.
     def enterPrimitive(self, ctx:JsonParser.PrimitiveContext):
         pass
 
     # Exit a parse tree produced by JsonParser#primitive.
     def exitPrimitive(self, ctx:JsonParser.PrimitiveContext):
+        pass
+
+
+    # Enter a parse tree produced by JsonParser#delimiter.
+    def enterDelimiter(self, ctx:JsonParser.DelimiterContext):
+        pass
+
+    # Exit a parse tree produced by JsonParser#delimiter.
+    def exitDelimiter(self, ctx:JsonParser.DelimiterContext):
         pass
 
 

@@ -3,16 +3,16 @@ grammar Json;
 json: obj | array;
 expression: obj | array | primitive;
 
-obj: '{' ((member)* lastMember)? '}';
-member: key ':' value DELIMITER;
-lastMember: key ':' value;
+obj: '{' (member (delimiter member)*)? '}';
+member: key ':' value;
 key: STRING;
 value: expression;
 
-array: '[' ((element)* lastElement)? ']';
-element: expression DELIMITER;
-lastElement: expression;
+array: '[' (element (delimiter element)*)? ']';
+element: expression;
 primitive: NUMBER | STRING | BOOLEAN | NULL;
+
+delimiter: DELIMITER;
 
 NUMBER: MINUS? INT FRAC? EXP?;
 fragment INT: '0' | NON_ZERO_DIGIT DIGIT*;
