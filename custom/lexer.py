@@ -73,7 +73,7 @@ class Lexer:
 whitespace = TokenType('WS', r'[ \r\n\t]+')
 
 token_types = [
-    TokenType('NUMBER', '-?(0|[1-9][0-9]*)(.([0-9]+))?((E|e)(-|\+)?([0-9]+))?'),
+    TokenType('NUMBER', '-?(0|[1-9][0-9]*)(\.([0-9]+))?((E|e)(-|\+)?([0-9]+))?'),
     TokenType('STRING', r'"([\u0020-\u0021]|[\u0023-\u005B]|[\u005D-\u10FFFF]|(\\("|\|/|b|f|n|r|t|(u([0-9][A-F]{4})))))*"'),
     TokenType('ARRAY_OPEN', '\['),
     TokenType('ARRAY_CLOSE', '\]'),
