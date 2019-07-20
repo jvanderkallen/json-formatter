@@ -81,6 +81,9 @@ class JsonFormatterListener(JsonListener):
         self.current_context.exit_context()
 
     def enterArray(self, ctx:JsonParser.ArrayContext):
+        if self.current_context.is_array():
+            self.print_indentation()
+        
         self.current_context.enter_array()
         print('[')
         self.current_context.increment_indentation_level()
